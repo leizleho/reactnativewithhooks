@@ -7,19 +7,26 @@
  */
 
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput
+} from 'react-native';
 
 export default function App() {
-  const [count, setCount] = useState(0);
   return (
     <View style={styles.container}>
-      <Text>You clicked {count} times!</Text>
-      <Button
-        onPress={() => setCount(count + 1)}
-        title="Click Me"
-        color="blue"
-        accessibilityLabel="Click this button to increase count"
-      />
+      <Text style={styles.header}>Todo List</Text>
+      <View style={styles.textInputContainer}>
+        <TextInput
+          style={styles.textInput}
+          multiline={true}
+          placeholder="What do you want to do today?"
+          placeholderTextColor="#abbabb"
+        />
+      </View>
     </View>
   );
 }
@@ -27,8 +34,31 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  header: {
+    marginTop: '15%',
+    fontSize: 20,
+    color: 'red',
+    paddingBottom: 10
+  },
+  textInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    borderColor: 'black',
+    borderBottomWidth: 1,
+    paddingRight: 10,
+    paddingBottom: 10
+  },
+  textInput: {
+    flex: 1,
+    height: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+    paddingLeft: 10,
+    minHeight: '3%'
   }
 });
