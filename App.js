@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow
+ *
  */
 
 import React, { useState } from 'react';
@@ -15,7 +15,18 @@ import {
   TextInput
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Feather';
+
 export default function App() {
+  const [value, setValue] = useState('');
+  const [todos, setTodos] = useState('');
+
+  addTodo = () => {
+    if (value.length > 0) {
+      setTodos([...todos, { text: value, key: Date.now(), checked: false }]);
+      setValue('');
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Todo List</Text>
@@ -25,7 +36,12 @@ export default function App() {
           multiline={true}
           placeholder="What do you want to do today?"
           placeholderTextColor="#abbabb"
+          value={value}
+          onChangeText={value => setValue(value)}
         />
+        <TouchableOpacity onPress={() => addTodo()}>
+          <Icon name="plus" size={30} color="blue" style={{ marginLeft: 15 }} />
+        </TouchableOpacity>
       </View>
     </View>
   );
